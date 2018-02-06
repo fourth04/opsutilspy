@@ -235,15 +235,17 @@ class Engine(object):
             index2 = self.child.expect(
                 [prompt_more, prompt_stop, pexpect.EOF, pexpect.TIMEOUT],
                 timeout_echo)
-            show_result += self.child.before + self.child.after
             if index2 == 0:
+                show_result += self.child.before + self.child.after
                 self.child.sendline(prompt_confirm)
             elif index2 == 1:
                 break
             elif index2 == 2:
                 show_result += b'\r\ntimeout\r\n'
+                break
             elif index2 == 3:
                 show_result += b'\r\nEOF\r\n'
+                break
         return show_result
 
     def cmd_config(
