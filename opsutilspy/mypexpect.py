@@ -26,7 +26,7 @@ class Engine(object):
             username,
             password,
             ip,
-            port=80,
+            port=23,
             prompt_username='sername|ogin:',
             prompt_password='assword:',
             prompt_refuse='refused',

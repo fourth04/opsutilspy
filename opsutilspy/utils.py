@@ -8,6 +8,30 @@ import csv
 import hashlib
 from importlib import import_module
 from pkgutil import iter_modules
+import time
+
+
+def decorator_time(func):
+    def wrapper(*args, **kwargs):
+        before = time.time()
+        ret = func(*args, **kwargs)
+        print(str(time.time() - before))
+        return ret
+    return wrapper
+
+
+def decorator_time2(t):
+    def wrapper1(func):
+        def wrapper2(*args, **kwargs):
+            before = time.time()
+            ret = func(*args, **kwargs)
+            if time.time() - before < t:
+                print('good')
+            else:
+                print('bad')
+            return ret
+        return wrapper2
+    return wrapper1
 
 
 def write_csv(result, file_obj):
